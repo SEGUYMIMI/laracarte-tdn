@@ -1,4 +1,5 @@
 <?php
+use App\Mail\ContactMessageCreated;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ Route::get('/',[
     'uses' => 'PagesController@home'
 ]);
 
+Route::get('test-email', function() {
+    return new ContactMessageCreated('Gbomene Mireille', 'mercuryseries@gmail.com','Merci pour laracarte.');
+});
 
 Route::get('/about',[
     'as' => 'about_path',
@@ -29,6 +33,12 @@ Route::get('/contact',[
     'as' => 'contact_path',
 
     'uses' => 'ContactsController@create'
+]);
+
+
+Route::post('/contact',[
+'as' =>  'contact_path',
+'uses' =>  'ContactsController@store'
 ]);
 
 
